@@ -1,0 +1,51 @@
+input CreateUserInput {
+    email: String!
+    username: String!
+    picture: String!
+    firstName: String!
+    lastName: String!
+    password: String!
+}
+
+input UpdateUserInput {
+    email: String
+    username: String
+    picture: String
+    firstName: String
+    lastName: String
+    lang: Lang
+    isAdult: Boolean
+}
+
+input UpdatePasswordInput {
+    oldPassword: String!
+    newPassword: String!
+}
+
+enum Lang {
+    FRENCH
+    ENGLISH
+}
+
+type User {
+    id: ID!
+    isAdult: Boolean!
+    email: String
+    username: String!
+    picture: String!
+    firstName: String!
+    lastName: String!
+    lang: Lang!
+    watchTime: [StreamWatchTime!]!
+}
+
+type Query {
+    me: User! @auth
+    user(id: ID!): User @auth
+}
+
+extend type Mutation {
+    createUser(input: CreateUserInput!): Boolean!
+    updateUser(input: UpdateUserInput!): User! @auth
+    updatePassword(input: UpdatePasswordInput!): Boolean! @auth
+}

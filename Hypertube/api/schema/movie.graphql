@@ -1,0 +1,162 @@
+input StartStreamInput {
+  id: ID!
+}
+
+input CommentMovieInput {
+  id: ID!
+  comment: String!
+}
+
+input StreamWatchTimeInput {
+  id: ID!
+  duration: Float!
+}
+
+########################################################################################################################
+                                              #Search Input
+
+input SearchMoviesInput {
+  title: String!
+  language: String!
+  page: Int!
+  isAdult: Boolean!
+  genresFilter: Genres!
+  yearFilter: Range!
+  notationFilter: Range!
+  sort: Sort!
+}
+
+
+input Genres {
+  animation: Boolean!
+  history: Boolean!
+  sport: Boolean!
+  horror: Boolean!
+  adult: Boolean!
+  family: Boolean!
+  music: Boolean!
+  adventure: Boolean!
+  thriller: Boolean!
+  comedy: Boolean!
+  romance: Boolean!
+  war: Boolean!
+  action: Boolean!
+  fantasy: Boolean!
+  biography: Boolean!
+  drama: Boolean!
+  crime: Boolean!
+  western: Boolean!
+  mystery: Boolean!
+  musical: Boolean!
+  documentary: Boolean!
+  sciFi: Boolean!
+}
+
+input Range {
+  min: Int!
+  max: Int!
+}
+
+input Sort {
+  first: String
+  year: String
+  rating: String
+}
+
+
+########################################################################################################################
+
+
+type Torrent {
+  id: ID!
+  title: String!
+  hash: String!
+  quality: String!
+  size: String!
+  seeders: Int!
+  leechers: Int!
+  downloaded: Boolean!
+}
+
+type StreamSource {
+  src: String!
+  type: String!
+  label: String!
+}
+
+type StreamSubtitle {
+  id: ID!
+  src: String!
+  lang: Lang!
+  label: String!
+}
+
+type StartStreamPayload {
+  id: ID!
+  duration: Float!
+  sources: [StreamSource!]!
+  subtitles: [StreamSubtitle!]!
+  resumeAt: Float!
+  movie: Movie!
+}
+
+type Movie {
+  id: ID!
+  primaryTitle: String
+  originalTitle: String
+  description: String
+  poster: String
+  adult: Boolean
+  year: Int
+  minutes: Int
+  rating: Float
+  votes: Int
+  genres: [String!]!
+  comments: [MovieComment!]!
+  actors: [MovieActor!]
+}
+
+type MovieActor {
+  category: String
+  name: String
+}
+
+type SearchedMovie {
+  id: ID
+  primaryTitle: String
+  originalTitle: String
+  adult: Boolean
+  year: Int
+  minutes: Int
+  genres: [String]
+  rating: Float
+  votes: Int
+  description: String
+  poster: String
+}
+
+type MovieComment {
+  id: ID!
+  user: User!
+  comment: String!
+  createdAt: DateTime!
+}
+
+type StreamWatchTime {
+  id: ID!
+  movie: Movie
+  duration: Float!
+}
+
+extend type Query {
+  movie(id: ID!): Movie @auth
+  populars: [Movie!]! @auth
+  searchTorrent(imdb: String!): [Torrent!]! @auth
+  searchMovies(input: SearchMoviesInput!): [SearchedMovie] @auth
+}
+
+extend type Mutation {
+  startStream(input: StartStreamInput!): StartStreamPayload! @auth
+  setStreamWatchTime(input: StreamWatchTimeInput!): StreamWatchTime! @auth
+  commentMovie(input: CommentMovieInput!): [MovieComment!]! @auth
+}

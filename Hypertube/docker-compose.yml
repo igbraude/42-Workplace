@@ -1,0 +1,38 @@
+version: '3'
+services:
+  api:
+    build:
+      context: api
+    environment:
+      GITHUB_CLIENT_ID: 4ad5f7ffd98f0a884c4c
+      GITHUB_CLIENT_SECRET: 67e82d02da2e4e570a1bd666ab7ee5e9413c962a
+      FOURTY_TWO_CLIENT_ID: 8e35cad2a7d81658a9e7f2d75b9db9c5465a0fac0c6b6d4d1415d86fe847bde5
+      FOURTY_TWO_CLIENT_SECRET: 41784ec4d3215776b428e4c3fea8d1d9855051d9c0b5a9b4c5021fb68a30899b
+      DB_HOST: 51.159.26.37
+      DB_USER: non
+      DB_PASSWORD: ?\JW5Cmqx7rYO^t/
+      DB_DATABASE: hypertube
+      DB_PORT: 29403
+      MAIL_HOST: mailhog
+      NODE_ENV: production
+    links:
+      - mailhog
+    ports:
+      - 4000:4000
+  client:
+    build:
+      context: client
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:8080
+  mailhog:
+    image: mailhog/mailhog
+    restart: on-failure
+    logging:
+      driver: 'none'
+    ports:
+      - 8025:8025
+      - 1025:1025
+volumes:
+  data: {}

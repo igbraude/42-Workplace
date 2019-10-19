@@ -1,0 +1,42 @@
+{
+  "private": true,
+  "name": "@hypertube/client",
+  "scripts": {
+    "start": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-client": "^2.6.3",
+    "apollo-link": "^1.2.12",
+    "apollo-link-http": "^1.5.15",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.27",
+    "core-js": "^2.6.5",
+    "graphql": "^14.4.2",
+    "graphql-tag": "^2.10.1",
+    "js-cookie": "^2.2.1",
+    "video.js": "^7.6.0",
+    "vue": "^2.6.10",
+    "vue-apollo": "^3.0.0-rc.2",
+    "vue-router": "^3.0.3",
+    "vue-slider-component": "^3.0.38",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "vue-cli-plugin-apollo": "^0.21.0",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "babel": {
+    "presets": [
+      "@vue/app"
+    ]
+  }
+}

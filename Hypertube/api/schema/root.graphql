@@ -1,0 +1,53 @@
+directive @auth on FIELD_DEFINITION
+
+enum OAuthProvider {
+  GITHUB
+  FOURTY_TWO
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input OAuthLoginInput {
+  provider: OAuthProvider!
+  code: String!
+}
+
+input ForgotPasswordInput {
+  email: String!
+}
+
+input EmailConfirmationInput {
+  email: String!
+}
+
+input RecoverPasswordInput {
+  token: String!
+  newPassword: String!
+}
+
+input AccountConfirmationInput {
+  token: String!
+}
+
+type LoginPayload {
+  id: ID!
+  token: String!
+}
+
+type OAuthLoginPayload {
+  token: String
+  oauthToken: String
+}
+
+type Mutation {
+  login(input: LoginInput!): LoginPayload!
+  loginFromOAuth(input: OAuthLoginInput!): OAuthLoginPayload!
+  forgotPassword(input: ForgotPasswordInput!): Boolean!
+  recoverPassword(input: RecoverPasswordInput!): Boolean!
+  accountConfirmation(input: AccountConfirmationInput!): Boolean!
+}
+
+scalar DateTime

@@ -1,0 +1,10 @@
+.DS_Store
+.env
+*.iml
+*.log
+/.idea
+/.vscode
+/data
+/**/node_modules
+/**/build
+/**/dist
