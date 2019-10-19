@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+{{> header }}
+
+    <div class="row align-items-center justify-content-center">
+
+        <form method="GET" class="register-form row align-items-center justify-content-center">
+            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        연령대(age range)
+                    </button>
+                    <div class="dropdown-menu">
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="18" {{#ifInArray age "18"}}checked{{/ifInArray}}/> 18</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="19" {{#ifInArray age "19"}}checked{{/ifInArray}}/> 19</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="20" {{#ifInArray age "20"}}checked{{/ifInArray}}/> 20</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="21" {{#ifInArray age "21"}}checked{{/ifInArray}}/> 21</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="22" {{#ifInArray age "22"}}checked{{/ifInArray}}/> 22</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="23" {{#ifInArray age "23"}}checked{{/ifInArray}}/> 23</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="24" {{#ifInArray age "24"}}checked{{/ifInArray}}/> 24</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="age" value="25" {{#ifInArray age "25"}}checked{{/ifInArray}}/> 25</li>
+                    </div>
+                </div>
+
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        지구 위치 범위(geolocation range)
+                    </button>
+                    <div class="dropdown-menu">
+                        <input type="range" class="custom-range" min="5" max="800" step="5" id="distanceRange" name="distance" onchange="getRange()">
+                        <p>Value: <span id="displayDistance"></span></p>
+                    </div>
+                </div>
+
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        태그(tags)
+                    </button>
+                    <div class="dropdown-menu">
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Sloth"}}checked{{/ifInArray}} value="Sloth"/> Sloth</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Lust"}}checked{{/ifInArray}} value="Lust"/> Lust</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Wrath"}}checked{{/ifInArray}} value="Wrath"/> Wrath</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Envy"}}checked{{/ifInArray}} value="Envy"/> Envy</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Pride"}}checked{{/ifInArray}} value="Pride"/> Pride</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Gluttony"}}checked{{/ifInArray}} value="Gluttony"/> Gluttony</li>
+                        <li class="dropdown-item small"><input type="checkbox" name="tags" {{#ifInArray tags "Greed"}}checked{{/ifInArray}} value="Greed"/> Greed</li>
+                    </div>
+                </div>
+
+                <div class="btn-group" role="group">
+                    <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        인기도(popularity score)
+                    </button>
+                    <div class="dropdown-menu">
+                        <li class="dropdown-item small"><input type="radio" name="popularity" {{#ternary popularity "1"}}checked{{/ternary}} value="1"/> < 25%</li>
+                        <li class="dropdown-item small"><input type="radio" name="popularity" {{#ternary popularity "2"}}checked{{/ternary}} value="2"/> 25% - 50%</li>
+                        <li class="dropdown-item small"><input type="radio" name="popularity" {{#ternary popularity "3"}}checked{{/ternary}} value="3"/> 50% - 75%</li>
+                        <li class="dropdown-item small"><input type="radio" name="popularity" {{#ternary popularity "4"}}checked{{/ternary}} value="4"/> 75% ></li>
+                    </div>
+                </div>
+
+            </div>
+            <input type="hidden" name="type" value="setFilters">
+            <input type="hidden" name="page" value="1">
+            <div class="row justify-content-center m-4">
+                <input type="submit" name="confirm" class="btn btn-dark" id="filters" value="Apply filters"/>
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-40">
+        <div class="row mt-30 justify-content-center align-items-center">
+
+            {{#each users}}
+
+                <div class="col m-4 mb-6 inner">
+                    <div class="row justify-content-center m-4">
+                        <img class="user-image" src="{{this.primary_picture}}" alt="Card image cap">
+                    </div>
+                    <div class="row justify-content-center m-4">
+                        <h5 class="card-title">{{this.username}}</h5>
+                        <span class="badge badge-pill badge-secondary m-1">{{this.distance}}Km</span>
+                    </div>
+                    <div class="row justify-content-center m-4">
+                        {{#each this.tags}}
+                            <span class="badge badge-pill badge-info m-1">{{this}}</span>
+                        {{/each}}
+                    </div>
+                    <div class="row justify-content-center m-4">
+                        <a href="http://localhost:3000/profile/{{this.user_id}}" class="btn btn-primary">프로필보기(see profile)</a>
+                    </div>
+                </div>
+
+            {{/each}}
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center m-4">
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+
+                <li class="page-item {{#ternary page "1"}}disabled{{/ternary}}">
+                    <a class="page-link" href="#" id="prev" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+
+                <li class="page-item active"><a class="page-link" id="currentPage" href="#"></a></li>
+
+                <li class="page-item {{#if isNext}}{{else}}disabled{{/if}}">
+                    <a class="page-link" href="#" id="next" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+</body>
+<script>
+
+    document.getElementById("prev").addEventListener("click", (event) => {
+        event.preventDefault();
+        getPrev()
+    });
+    document.getElementById("next").addEventListener("click", (event) => {
+        event.preventDefault();
+        getNext()
+    });
+    window.addEventListener("pageshow", displayCurrentPage());
+
+    let slider = document.getElementById("distanceRange");
+    let output = document.getElementById("displayDistance");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+        output.innerHTML = this.value + " km";
+    };
+
+    function displayCurrentPage() {
+        const url = new URL(window.location.href);
+        const currentPage = Number(url.searchParams.get("page"));
+        document.getElementById("distanceRange").value = {{distance}};
+        document.getElementById("currentPage").innerHTML = currentPage.toString();
+        document.getElementById("distanceRange").innerHTML = {{distance}};
+    }
+
+    function getPrev() {
+        let url = new URL(window.location.href);
+        const currentPage = Number(url.searchParams.get("page"));
+        if (currentPage <= 1) {
+            url = url.href.replace(`page=${currentPage}`, `page=1`);
+            // disable previous button
+        } else {
+            const nextPage = currentPage - 1;
+            url = url.href.replace(`page=${currentPage}`, `page=${nextPage}`);
+        }
+        window.location.href = url
+    }
+
+    function getNext() {
+        let url = new URL(window.location.href);
+        const currentPage = Number(url.searchParams.get("page"));
+        if (!{{isNext}}) {
+            url = url.href.replace(`page=${currentPage}`, `page=${currentPage}`);
+        } else {
+            const nextPage = currentPage + 1;
+            url = url.href.replace(`page=${currentPage}`, `page=${nextPage}`);
+        }
+        window.location.href = url
+    }
+
+
+
+</script>
+</html>

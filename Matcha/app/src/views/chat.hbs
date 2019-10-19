@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+{{> header }}
+    <div style="display:flex; flex-wrap:nowrap; margin-left: 1vw; margin-right: 1vw" class="row">
+        <div style="max-width:35vw;" class="col">
+                <h3>Online Users</h3>
+                <div style="position:relative;height: 900px;overflow-y:scroll;" class="list-group">
+                    {{#each usersMatch}}
+                        <input type="hidden" name="matchId" value="{{this.user_id}}" id="matchId" class="matchId">
+                        <a name="users" href="http://localhost:3000/chat/{{this.user_id}}" class="list-group-item list-group-item-action" id="userSelect"><img class="chat-image" src="../.{{this.primary_picture}}" alt="usersPic">  {{this.username}}</a>
+                    {{/each}}
+                </div>
+        </div>
+
+        <div style="width: 15vw" id="messageArea" class="col">
+        <!--        target div for chat message         -->
+        </div>
+
+    </div>
+</body>
+<script src="/js/chat.js"></script>
+</html>
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+{{> header }}
+    <div class="container">
+
+        <form method="POST">
+            {{>flash}}
+
+            <div class="jumbotron m-4">
+                <div class="row ml-4 mr-4">
+                    <div class="form-group col">
+                        <div class="row align-items-center justify-content-center">
+                            <h2 class="align-self-center">레지스터(register)</h2>
+                        </div>
+                        <label class="m-2">사용자 이름(username)</label>
+                        <p><input class="form-control" name="username"/></p>
+                        <label class="m-2">이름(first name)</label>
+                        <p><input type="text" class="form-control" name="first_name"/></p>
+                        <label class="m-2">성(last name)</label>
+                        <p><input type="text" class="form-control" name="last_name"/></p>
+                        <label class="m-2">너의 나이(your age)</label>
+                        <div class="form-group">
+                            <select class="form-control" name="age">
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                                <option>21</option>
+                                <option>22</option>
+                                <option>23</option>
+                                <option>24</option>
+                                <option>25</option>
+                            </select>
+                        </div>
+                        <label class="m-2">이메일(email)</label>
+                        <p><input type="text" class="form-control" name="email"/></p>
+                        <label class="m-2">암호(password)</label>
+                        <p><input class="form-control" type="password" name="password"/></p>
+                        <label class="m-2">암호를 반복하십시오(repeat your password)</label>
+                        <p><input class="form-control" type="password" name="re_pass"/></p>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="type" value="register">
+            <div class="row justify-content-center m-4">
+                <input type="submit" name="confirm" class="btn btn-dark" value="레지스터(register)"/>
+            </div>
+        </form>
+
+        <form method="POST">
+            <div class="jumbotron m-4">
+                <div class="row ml-4 mr-4">
+                    <div class="form-group col">
+                        <div class="row align-items-center justify-content-center">
+                            <h2 class="align-self-center">로그인(log in)</h2>
+                        </div>
+                        <label class="m-2">사용자 이름(username)</label>
+                        <p><input class="form-control" name="username"/></p>
+                        <label class="m-2">암호(password)</label>
+                        <p><input class="form-control" type="password" name="password"/></p>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="type" value="login">
+            <div class="row justify-content-center m-4">
+                <input type="submit" name="confirm" class="btn btn-dark" value="로그인(login)"/>
+            </div>
+        </form>
+
+        <form method="POST">
+            <div class="jumbotron m-4">
+                <div class="row ml-4 mr-4">
+                    <div class="form-group col">
+                        <div class="row align-items-center justify-content-center">
+                            <h2 class="align-self-center">비밀번호를 잊으 셨나요(forgot password)</h2>
+                        </div>
+                        <label class="m-2">이메일(email)</label>
+                        <p><input class="form-control" type="text" name="email"/></p>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" name="type" value="forgotPassword">
+            <div class="row justify-content-center m-4">
+                <input type="submit" name="confirm" class="btn btn-dark" value="확인하다(confirm)"/>
+            </div>
+        </form>
+
+    </div>
+</body>
+</html>
+

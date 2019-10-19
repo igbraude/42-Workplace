@@ -1,0 +1,105 @@
+.profile-image {
+    height: 20vw;
+    width: 20vw;
+    min-height: 20vw;
+    min-width: 20vw;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+    .profile-image {
+        height: 40vw;
+        width: 40vw;
+        min-height: 40vw;
+        min-width: 40vw;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+
+.user-image {
+    height: 7.5vw;
+    width: 7.5vw;
+    min-height: 7.5vw;
+    min-width: 7.5vw;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+    .user-image {
+        height: 15vw;
+        width: 15vw;
+        min-height: 15vw;
+        min-width: 15vw;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+
+.chat-image {
+    height: 3vw;
+    width: 3vw;
+    min-height: 3vw;
+    min-width: 3vw;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+@media only screen and (max-width: 600px) {
+    .chat-image {
+        height: 5vw;
+        width: 5vw;
+        min-height: 5vw;
+        min-width: 5vw;
+        object-fit: cover;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+}
+
+.carousel-image {
+    border-radius: 1%;
+    height: 50vw;
+    width: 20vw;
+    min-height: 20vw;
+    min-width: 20vw;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.outer {
+    display: flex; /* displays flex-items (children) inline */
+    overflow-x: auto;
+
+}
+
+.inner {
+    flex: 0 0 25%; /* doesn't grow nor shrink, initial width set to 25% of the parent's */
+}

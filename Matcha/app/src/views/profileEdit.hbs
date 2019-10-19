@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+{{> header }}
+    <div class="container">
+        {{> flash}}
+            <form method="POST" class="register-form">
+                <div class="jumbotron m-4">
+                    <div class="row ml-4 mr-4">
+                        <div class="form-group col">
+                            <div class="row align-items-center justify-content-center">
+                                <h2 class="align-self-center">Your Profile</h2>
+                            </div>
+                            <label class="m-2">Username</label>
+                            <p><input class="form-control" name="username" value="{{user.username}}"/></p>
+                            <label class="m-2">First name</label>
+                            <p><input class="form-control" name="first_name" value="{{user.first_name}}"/></p>
+                            <label class="m-2">Last name</label>
+                            <p><input class="form-control" name="last_name" value="{{user.last_name}}"/></p>
+                            <label class="m-2">너의 나이(your age)</label>
+                            <div class="form-group">
+                                <select class="form-control" name="age">
+                                    <option{{#ternary user.age 18}} selected{{/ternary}}>18</option>
+                                    <option{{#ternary user.age 19}} selected{{/ternary}}>19</option>
+                                    <option{{#ternary user.age 20}} selected{{/ternary}}>20</option>
+                                    <option{{#ternary user.age 21}} selected{{/ternary}}>21</option>
+                                    <option{{#ternary user.age 22}} selected{{/ternary}}>22</option>
+                                    <option{{#ternary user.age 23}} selected{{/ternary}}>23</option>
+                                    <option{{#ternary user.age 24}} selected{{/ternary}}>24</option>
+                                    <option{{#ternary user.age 25}} selected{{/ternary}}>25</option>
+                                </select>
+                            </div>
+                            <label class="m-2">Email</label>
+                            <p><input class="form-control" name="email" value="{{user.email}}"/></p>
+                            <label class="m-2">Gender</label>
+                            <select class="form-control" name="gender" value="{{user.gender}}">
+                                <option{{#ternary user.gender "male"}} selected{{/ternary}}>male</option>
+                                <option{{#ternary user.gender "female"}} selected{{/ternary}}>female</option>
+                                <option{{#ternary user.gender "bisexual"}} selected{{/ternary}}>bisexual</option>
+                            </select>
+                            <label class="m-2 mt-4">Sexual orientation</label>
+                            <select class="form-control" name="sexual_orientation" value="{{user.sexual_orientation}}">
+                                <option{{#ternary user.sexual_orientation "male"}} selected{{/ternary}}>male</option>
+                                <option{{#ternary user.sexual_orientation "female"}} selected{{/ternary}}>female</option>
+                                <option{{#ternary user.sexual_orientation "bisexual"}} selected{{/ternary}}>bisexual</option>
+                            </select>
+                            <label class="m-2 mt-4">Bio (140char max)</label>
+                            <textarea name="bio" class="form-control" rows="3" maxlength="140">{{user.bio}}</textarea>
+
+                            <label class="m-2 mt-4">Tags</label>
+                            {{#each user.tags}}
+                                <li class="list-group-item"><input type="checkbox" name="tags"  {{#if this.selected}}checked{{/if}} value="{{this.name}}"/> {{this.name}}</li>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="type" value="alterProfile">
+                <div class="row justify-content-center m-4">
+                    <input type="submit" name="confirm" class="btn btn-dark" value="Confirm changes"/>
+                </div>
+            </form>
+
+            <form method="POST" class="register-form">
+                <div class="jumbotron m-4">
+                    <div class="row ml-4 mr-4">
+                        <div class="form-group col">
+                            <div class="row align-items-center justify-content-center">
+                                <h2 class="align-self-center">Change your geolocation</h2>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label class="m-2">Latitude</label>
+                                    <p><input type="text" class="form-control" name="lat" value="{{user.password}}"/></p>
+                                </div>
+                                <div class="col">
+                                    <label class="m-2">Longitude</label>
+                                    <p><input type="text" class="form-control" name="lng" value="{{user.password}}"/></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="type" value="changeLocation">
+                <div class="row justify-content-center m-4">
+                    <input type="submit" name="changeLocation" class="btn btn-dark" value="Change geolocation"/>
+                </div>
+            </form>
+
+            <form method="POST" class="register-form">
+                <div class="jumbotron m-4">
+                    <div class="row ml-4 mr-4">
+                        <div class="form-group col">
+                            <div class="row align-items-center justify-content-center">
+                                <h2 class="align-self-center">Change your password</h2>
+                            </div>
+                            <label class="m-2">New password</label>
+                            <p><input type="password" class="form-control" name="password" value="{{user.password}}"/></p>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="type" value="changePassword">
+                <div class="row justify-content-center m-4">
+                    <input type="submit" name="changePassword" class="btn btn-dark" value="Change password"/>
+                </div>
+            </form>
+
+            <div class="row justify-content-center m-4">
+                <a class="nav-link text-md-right" href="http://localhost:3000/profile">go back</a>
+            </div>
+    </div>
+</body>
+</html>

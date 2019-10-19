@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: kartoza/postgis:latest
+    container_name: "matcha"
+    environment:
+      - POSTGRES_PASSWORD=matcha
+      - POSTGRES_USER=matcha
+      - POSTGRES_DB=matcha
+    ports:
+      - "5432:5432"
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./db/insertUsers.sql:/docker-entrypoint-initdb.d/insertUsers.sql
+      - ./db/insertGeolocation.sql:/docker-entrypoint-initdb.d/insertGeolocation.sql
+      - ./db/insertPictures.sql:/docker-entrypoint-initdb.d/insertPictures.sql
+      - ./db/insertLikes.sql:/docker-entrypoint-initdb.d/insertLikes.sql
+      - ./db/insertVisits.sql:/docker-entrypoint-initdb.d/insertVisits.sql
+      - ./db/insertRooms.sql:/docker-entrypoint-initdb.d/insertRooms.sql
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=db
+      - APP_PORT=3000
+      - SOCKET_PORT=3001
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    depends_on:
+      - db
+volumes:
+  data:

@@ -1,0 +1,35 @@
+    <input type="hidden" id="room" name="room" value="{{room.room_id}}">
+    <input type="hidden" id="myId" name="myId" value="{{userId}}">
+    <input type="hidden" id="myName" name="myName" value="{{myName}}">
+    <input type="hidden" id="first_user_id" name="receiver" value="{{room.first_user_id}}">
+    <input type="hidden" id="second_user_id" name="sender" value="{{room.second_user_id}}">
+    <input type="hidden" id="pictureSrc" name="pictureSrc" value="../.{{pic}}">
+    <div style="position:relative;height: 50rem;overflow-y:scroll;" class="chat" id="chat">
+        {{#each messages}}
+        {{#ternary this.sender this.myName}}
+            <div class="outgoing_msg">
+                <div class="sent_msg">
+                    <p class="message_text">{{this.message}}</p>
+                    <span class="time_date">{{this.date}}</span> </div>
+            </div>
+        {{else}}
+            <div class="incoming_msg">
+                <div class="incoming_msg_img"> <img id="picture" class="chat-image" src=../.{{this.picture}}> </div>
+                <div class="received_msg">
+                    <div class="received_withd_msg">
+                        <p class="message_text">{{this.message}}</p>
+                        <span class="time_date">{{this.date}}</span></div>
+                </div>
+            </div>
+        {{/ternary}}
+        {{/each}}
+    </div>
+        <form id="messageForm">
+            <div class="form-group">
+                <label>Enter Message</label>
+                <textarea name="message" class="form-control" id="message" ></textarea>
+                <br />
+                <input id="sendMessage" type="submit" class="btn btn-primary" value="Send Message">
+            </div>
+        </form>
+    </div>

@@ -1,0 +1,31 @@
+<nav class="mb-4 navbar navbar-expand-lg navbar-dark bg-dark lighten-1">
+    <a class="navbar-brand" href="http://localhost:3000">MATCHA-엘리트 한국 데이트 사이트</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+            aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons">
+            {{#unless disableLinks}}
+                <li class="nav-item
+                    {{#if profile}}
+                        active
+                    {{/if}}
+                ">
+                    <a class="nav-link" href="http://localhost:3000/profile">윤곽(profile)
+                    </a>
+                </li>
+                <li class="ml-3 nav-item">
+                    <a class="nav-link" id="disconnect" href="http://localhost:3000/user/disconnect">연결 해제(disconnect)
+                    </a>
+                </li>
+                <li class="ml-3 nav-item">
+    <!--                <a class="nav-link" href="http://localhost:3000/user/delete">프로필 삭제(delete profile)-->
+    <!--                </a>-->
+                </li>
+            {{/unless}}
+        </ul>
+    </div>
+</nav>
